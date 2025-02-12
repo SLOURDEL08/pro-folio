@@ -1,70 +1,259 @@
 // src/pages/Home/Home.tsx
-import { Button } from '@components/ui/Button';
+import { AnimatedTabs } from '@/components/AnimatedTabs/AnimatedTabs';
+import { BestProjectCarousel } from '@/components/BestProjectCarousel/BestProjectCarousel';
+import ScrollSection from '@/components/layout/ScrollSection/ScrollSection';
+import MasonryGrid from '@/components/MansoryWork/MansoryWork';
+import ScrollInfiniteCard from '@/components/ScrollInfiniteCard/ScrollInfiniteCard';
+import { SkillsCarousel } from '@/components/SkillsCard/SkillsCard';
+import { Button } from '@/components/ui/Button';
+import { VerticalCarousel } from '@/components/VerticalCarousel/VerticalCarousel';
+import { VideoCarousel } from '@/components/VideoCard/VideoCard';
+import { Hero } from '@components/sections/Hero/Hero';
+
+const videoGroups = [
+  [
+    "/public/video.mp4",
+    "/public/video.mp4",
+    "/public/video.mp4"
+  ],
+  [
+   "/public/video.mp4",
+    "/public/video.mp4",
+    "/public/video.mp4"
+  ],
+  // ... plus de groupes de vidéos
+];
+
+
+  const tabs = [
+    {
+      title: "AI-powered ecommerce store generation",
+      description: "Instantly build and publish a fully functional AI store. Customize design, content, and products with drag-&-drop editor and AI tools."
+    },
+    {
+      title: "Automated inventory management",
+      description: "Let AI handle your inventory tracking, reordering, and optimization while you focus on growing your business."
+    },
+    {
+      title: "Smart marketing automation",
+      description: "Leverage AI to create targeted campaigns, optimize ad spend, and drive more sales to your store automatically."
+    }
+  ];
+
+const cards = [
+  {
+    id: 1,
+    title: "Titre de la carte",
+    description: "Description...",
+    image: "/arrow.png" // optionnel
+  },
+   {
+    id: 2,
+    title: "Titre de la carte",
+    description: "Description...",
+    image: "/arrow.png" // optionnel
+  },
+  // ... autres cartes
+];
+
+ const projects = [
+    {
+      title: "Projet Portfolio",
+      description: "Un portfolio moderne et interactif développé avec Next.js et TailwindCSS. Ce projet met en valeur mes compétences en développement web et design d'interface.",
+      image: "/public/portfolio.jpg",
+      buttonText: "Voir le projet",
+      buttonLink: "https://portfolio.example.com"
+    },
+    {
+      title: "Application E-commerce",
+      description: "Une plateforme e-commerce complète avec panier d'achat, paiement sécurisé et gestion des commandes en temps réel.",
+      image: "/public/ecommerce.jpg",
+      buttonText: "Découvrir",
+      buttonLink: "https://ecommerce.example.com"
+    },
+    // Ajoutez d'autres projets...
+ ];
+  
+ 
+
+const skills = [
+  {
+    title: "Titre",
+    description: "Description",
+    image: "url-image" // optionnel
+  },
+   {
+    title: "Titre",
+    description: "Description",
+    image: "url-image" // optionnel
+  },
+    {
+    title: "Titre",
+    description: "Description",
+    image: "url-image" // optionnel
+  },
+   {
+    title: "Titre",
+    description: "Description",
+    image: "url-image" // optionnel
+  },
+    {
+    title: "Titre",
+    description: "Description",
+    image: "url-image" // optionnel
+  }
+];
+
+const items = [
+  {
+    id: 1,
+    title: "Migrate your website with 1 click",
+    description: "Description de la carte",
+    content: "Contenu dans la liste",
+    image: "/chemin/image.jpg" // optionnel
+  },
+    {
+    id: 2,
+    title: "Get secure hosting on Google Cloud",
+    description: "Description de la carte",
+    content: "Contenu dans la liste",
+    image: "/chemin/image.jpg" // optionnel
+  },
+      {
+    id: 3,
+    title: "Auto-optimize your site to achieve 90+ PageSpeed",
+    description: "Description de la carte",
+    content: "Contenu dans la liste",
+    image: "/chemin/image.jpg" // optionnel
+  },
+        {
+    id: 4,
+    title: "Update your website with AI-powered editor",
+    description: "Description de la carte",
+    content: "Contenu dans la liste",
+    image: "/chemin/image.jpg" // optionnel
+  },
+                {
+    id: 5,
+    title: "Manage, customize, and automate site operations",
+    description: "Description de la carte",
+    content: "Contenu dans la liste",
+    image: "/chemin/image.jpg" // optionnel
+  },
+  // ... plus d'items
+];
 
 export const Home = () => {
+
+  const sections = [
+  { id: 'overview', title: 'Overview' },
+  { id: 'details', title: 'Details' },
+  { id: 'conclusion', title: 'Conclusion' },
+  ];
+  
+  const sectionsProject = [
+  { id: 'tesla', title: 'Tesla.com' },
+  { id: 'ferrari', title: 'FerrariBeverly' },
+  { id: 'netflix', title: 'NetflixApp' },
+  ];
+  
+   
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className="block">Bienvenue sur mon</span>
-              <span className="block text-primary-600">Portfolio</span>
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Développeur Web Full Stack passionné par la création d'applications web modernes et performantes.
-            </p>
-            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-              <div className="rounded-md shadow">
-                <Button size="lg">
-                  Voir mes projets
-                </Button>
-              </div>
-              <div className="mt-3 sm:mt-0 sm:ml-3">
-                <Button variant="outline" size="lg">
-                  Me contacter
-                </Button>
-              </div>
+      <Hero />
+
+
+
+    <ScrollSection sections={sections} >
+      <section id="overview" className="min-h-screen px-20 py-28 -mt-32">
+          <div className='flex items-end gap-14 mt-20'>
+            <div className='space-y-8'>
+               <h3 className='text-5xl font-bold leading-tight'>Build fully functional, customizable websites with AI.</h3>
+               <p className='text-2xl  leading-10 font-light'>Describe your website and let AI generate layouts, set design preferences, and build a fully functional site in minutes.</p>
+            </div>
+            <div className=' text-right'>
+                        <Button  className='w-max bg-black border-black'>Generate Your Website</Button>
+</div>
+           
+          </div>
+             <div className="relative w-screen left-[calc(-50vw+50%)] right-[calc(-50vw+50%)] mt-12">
+            <div className=""> {/* Aligne avec le padding gauche de la page */}
+<VideoCarousel videoGroups={videoGroups} />
             </div>
           </div>
-        </div>
       </section>
-
-      {/* Featured Projects Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">
-            Projets récents
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Add your project cards here */}
+      
+      <section id="details" className="min-h-screen bg-gray-100 py-10 px-20">
+        <div className='flex items-end gap-14 mt-20'>
+            <div className='space-y-8'>
+               <h3 className='text-5xl font-bold leading-tight'>Build fully functional, customizable websites with AI.</h3>
+               <p className='text-2xl  leading-10 font-light'>Describe your website and let AI generate layouts, set design preferences, and build a fully functional site in minutes.</p>
+            </div>
+            <div className=' text-right'>
+                        <Button  className='w-max bg-black border-black'>Generate Your Website</Button>
+</div>
+           
           </div>
-        </div>
+                  <div className="relative">
+  <SkillsCarousel skills={skills} />
+</div>
       </section>
+      
+        <section id="conclusion" className="min-h-screen bg-black">
+           
+      <BestProjectCarousel projects={projects} />
+        
 
-      {/* Skills Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">
-            Compétences
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {/* Add your skills here */}
-          </div>
-        </div>
       </section>
+    </ScrollSection>
+
+      <div className='pt-20 text-center'>
+        <h3 className=' text-6xl font-bold mb-10'>One platform, four powerful use cases.</h3>
+          <span className=' text-xl opacity-60'>For those who have the guts to take action on their dreams.</span>
+      </div>
+
+      <ScrollSection sections={sectionsProject} >
+        
+        <section  className='min-h-screen'   id='tesla'>
+          <div className='px-20 flex flex-col'>
+          
+      <div className='flex items-end gap-14'>
+            <div className='space-y-8'>
+               <h3 className='text-5xl font-bold leading-tight'>Build fully functional, customizable websites with AI.</h3>
+               <p className='text-2xl  leading-10 font-light'>Describe your website and let AI generate layouts, set design preferences, and build a fully functional site in minutes.</p>
+              </div>
+              
+            <div className=' text-right w-40'>
+                        <Button  className='w-max bg-black border-black'>Generate Your Website</Button>
+</div>
+           </div>
+          </div>
+                <ScrollInfiniteCard cards={cards} speed={50} />
+
+
+        </section>
+        <section className='min-h-screen p-20  bg-black'  id='ferrari'>
+          <AnimatedTabs 
+        tabs={tabs}
+        duration={5}
+        image="/arrow.png"
+      />
+        </section>
+        <section className=' bg-gray-100' id='netflix'>
+      <VerticalCarousel items={items} duration={5} />
+
+
+        </section>
+    </ScrollSection>
+  
 
       {/* Contact Section */}
       <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-12">
-            Me contacter
-          </h2>
-          <div className="max-w-lg mx-auto">
-            {/* Add your contact form here */}
-          </div>
-        </div>
+        <div className='space-y-8 px-20 pb-20'>
+               <h3 className='text-5xl font-bold leading-tight'>Build fully functional, customizable websites with AI.</h3>
+               <p className='text-2xl  leading-10 font-light'>Describe your website and let AI generate layouts, set design preferences, and build a fully functional site in minutes.</p>
+              </div>
+            <MasonryGrid />
       </section>
     </div>
   );

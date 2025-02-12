@@ -6,6 +6,61 @@ export default {
   ],
   theme: {
     extend: {
+         animation: {
+        blob: "blob 7s infinite",
+        'color-1': "color1 10s infinite",
+        'color-2': "color2 12s infinite",
+        'color-3': "color3 14s infinite",
+      },
+      keyframes: {
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+        },
+        color1: {
+          "0%, 100%": {
+            backgroundColor: "rgb(168, 85, 247)", // purple-500
+          },
+          "33%": {
+            backgroundColor: "rgb(59, 130, 246)", // blue-500
+          },
+          "66%": {
+            backgroundColor: "rgb(16, 185, 129)", // emerald-500
+          },
+        },
+        color2: {
+          "0%, 100%": {
+            backgroundColor: "rgb(59, 130, 246)", // blue-500
+          },
+          "33%": {
+            backgroundColor: "rgb(16, 185, 129)", // emerald-500
+          },
+          "66%": {
+            backgroundColor: "rgb(168, 85, 247)", // purple-500
+          },
+        },
+        color3: {
+          "0%, 100%": {
+            backgroundColor: "rgb(16, 185, 129)", // emerald-500
+          },
+          "33%": {
+            backgroundColor: "rgb(168, 85, 247)", // purple-500
+          },
+          "66%": {
+            backgroundColor: "rgb(59, 130, 246)", // blue-500
+          },
+        },
+      },
       colors: {
         primary: {
           50: '#f0f9ff',
