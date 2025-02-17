@@ -45,64 +45,113 @@ const cards = [
     id: 1,
     title: "Titre de la carte",
     description: "Description...",
-    image: "/arrow.png" // optionnel
+    image: "/design/digitoile.png" // optionnel
   },
    {
     id: 2,
     title: "Titre de la carte",
     description: "Description...",
-    image: "/arrow.png" // optionnel
+    image: "/design/Crafty.png" // optionnel
+  },
+      {
+    id:3,
+    title: "Titre de la carte",
+    description: "Description...",
+    image: "/design/avocat.png" // optionnel
+  },
+         {
+    id: 4,
+    title: "Titre de la carte",
+    description: "Description...",
+    image: "/design/digitalizerr.png" // optionnel
   },
   // ... autres cartes
 ];
 
- const projects = [
-    {
-      title: "Projet Portfolio",
-      description: "Un portfolio moderne et interactif développé avec Next.js et TailwindCSS. Ce projet met en valeur mes compétences en développement web et design d'interface.",
-      image: "/public/portfolio.jpg",
-      buttonText: "Voir le projet",
-      buttonLink: "https://portfolio.example.com"
-    },
-    {
-      title: "Application E-commerce",
-      description: "Une plateforme e-commerce complète avec panier d'achat, paiement sécurisé et gestion des commandes en temps réel.",
-      image: "/public/ecommerce.jpg",
-      buttonText: "Découvrir",
-      buttonLink: "https://ecommerce.example.com"
-    },
-    // Ajoutez d'autres projets...
- ];
+const projects = [
+  {
+    title: "Projet Portfolio",
+    tag: "Next.js",
+    details: [
+      "Développé avec Next.js et TailwindCSS",
+      "Interface responsive et moderne",
+      "Optimisation SEO et performance",
+      "Animations fluides et interactives"
+    ],
+    image: "/formation/booki.webp",
+    buttonText: "Voir le projet",
+    buttonLink: "https://portfolio.example.com"
+  },
+  {
+    title: "Application E-commerce",
+    tag: "Full-Stack",
+    details: [
+      "Authentification sécurisée",
+      "Paiement Stripe intégré",
+      "Gestion de panier en temps réel",
+      "Dashboard administrateur"
+    ],
+    image: "/formation/kasa.webp",
+    buttonText: "Découvrir",
+    buttonLink: "https://ecommerce.example.com"
+  },
+  {
+    title: "API REST",
+    tag: "Back-end",
+    details: [
+      "Architecture REST complète",
+      "Sécurité et authentification JWT",
+      "Documentation Swagger",
+      "Tests unitaires et d'intégration"
+    ],
+    image: "/formation/monvieuxgrimoire.webp",
+    buttonText: "Découvrir",
+    buttonLink: "https://api.example.com"
+  }
+];
   
  
 
 const skills = [
   {
-    title: "Titre",
-    description: "Description",
-    image: "url-image" // optionnel
-  },
-   {
-    title: "Titre",
-    description: "Description",
-    image: "url-image" // optionnel
+    title: "Front-End",
+    description: "Création d'interfaces utilisateurs réactives et modernes en utilisant HTML, CSS, JavaScript et des frameworks comme React.",
+    image: "/responsivedevfront.png", // optionnel
   },
     {
-    title: "Titre",
-    description: "Description",
-    image: "url-image" // optionnel
+    title: "Performance Web",
+    description: "Optimisation des sites pour une performance maximale, en visant un score PageSpeed supérieur à 90.",
+    image: "/pagespeed.jpg" // optionnel
   },
    {
-    title: "Titre",
-    description: "Description",
-    image: "url-image" // optionnel
+    title: "Back-End",
+    description: "Conception et consommation d'APIs RESTful, permettant une communication fluide entre le front-end et le back-end.",
+    carouselVertical: [
+      "React.js",
+      "Vue.js",
+      "Next.js",
+      "TypeScript",
+      "Redux",
+      "React Query"
+    ] // optionnel
+  },
+  {
+    title: "Déploiement",
+    description: "Automatisation du processus de déploiement avec des outils comme Docker, CI/CD, et hébergement sur des services cloud (AWS, Heroku).",
+    image: ["/vercel.webp", "/netlify2.png"] // Alternera entre ces images
   },
     {
-    title: "Titre",
-    description: "Description",
+    title: "Intégration Maquettes",
+    description: "Conversion de maquettes Figma/AdobeXD en sites web fonctionnels, en respectant les meilleures pratiques d'accessibilité et de performance.",
+    image: "/maquetteviewer.png" // optionnel
+  },
+  {
+    title: "Styling Avancé",
+    description: "Utilisation de frameworks CSS comme TailwindCSS, Bootstrap et Sass pour des interfaces visuellement attrayantes et responsives.",
     image: "url-image" // optionnel
   }
 ];
+
 
 const items = [
   {
@@ -166,7 +215,7 @@ export const Home = () => {
 
     <ScrollSection sections={sections} >
       <section id="overview" className="min-h-screen px-20 py-28 -mt-32">
-          <div className='flex items-end gap-14 mt-20'>
+          <div className='flex items-end gap-14 mt20'>
             <div className='space-y-8'>
                <h3 className='text-5xl font-bold leading-tight'>Build fully functional, customizable websites with AI.</h3>
                <p className='text-2xl  leading-10 font-light'>Describe your website and let AI generate layouts, set design preferences, and build a fully functional site in minutes.</p>
@@ -228,7 +277,7 @@ export const Home = () => {
 </div>
            </div>
           </div>
-                <ScrollInfiniteCard cards={cards} speed={50} />
+       <ScrollInfiniteCard tag="design" speed={50} />
 
 
         </section>

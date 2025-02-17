@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'TheQlickers';
+  src: url('../fonts/TheQlickers-Regular.otf') format('opentype'),
+       url('../fonts/TheQlickers-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TheQlickers';
+  src: url('../fonts/TheQlickers-Bold.otf') format('opentype'),
+       url('../fonts/TheQlickers-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer utilities {
   .animation-delay-2000 {
     animation-delay: 2s;

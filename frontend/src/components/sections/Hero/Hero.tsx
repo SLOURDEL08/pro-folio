@@ -1,9 +1,68 @@
 // src/components/sections/Hero/Hero.tsx
+import MemojiInteractive from '@/components/MemojiTrackingMouse/MemojiTrackingMouse';
 import { Button } from '@components/ui/Button';
+const centerToRightFrames = [
+  '/memoji-center-to-right/unscreen-001.png',
+  '/memoji-center-to-right/unscreen-002.png',
+  '/memoji-center-to-right/unscreen-003.png',
+  '/memoji-center-to-right/unscreen-004.png',
+  '/memoji-center-to-right/unscreen-005.png',
+  '/memoji-center-to-right/unscreen-006.png',
+  '/memoji-center-to-right/unscreen-007.png',
+  '/memoji-center-to-right/unscreen-008.png',
+  '/memoji-center-to-right/unscreen-009.png',
+  '/memoji-center-to-right/unscreen-010.png',
+  '/memoji-center-to-right/unscreen-011.png',
+  '/memoji-center-to-right/unscreen-012.png',
+  '/memoji-center-to-right/unscreen-013.png',
+  '/memoji-center-to-right/unscreen-014.png',
+  '/memoji-center-to-right/unscreen-015.png',
+  '/memoji-center-to-right/unscreen-016.png',
+  '/memoji-center-to-right/unscreen-017.png',
+  '/memoji-center-to-right/unscreen-018.png',
+  '/memoji-center-to-right/unscreen-019.png',
+  '/memoji-center-to-right/unscreen-020.png',
+  '/memoji-center-to-right/unscreen-021.png',
+  '/memoji-center-to-right/unscreen-022.png',
+  '/memoji-center-to-right/unscreen-023.png',
+  '/memoji-center-to-right/unscreen-024.png',
+  '/memoji-center-to-right/unscreen-025.png',
+  '/memoji-center-to-right/unscreen-026.png',
+  '/memoji-center-to-right/unscreen-027.png',
+  '/memoji-center-to-right/unscreen-028.png'
+];
+
+const centerToLeftFrames = [
+  '/memoji-center-to-left/unscreen-001.png',
+  '/memoji-center-to-left/unscreen-002.png',
+  '/memoji-center-to-left/unscreen-003.png',
+  '/memoji-center-to-left/unscreen-004.png',
+  '/memoji-center-to-left/unscreen-005.png',
+  '/memoji-center-to-left/unscreen-006.png',
+  '/memoji-center-to-left/unscreen-007.png',
+  '/memoji-center-to-left/unscreen-008.png',
+  '/memoji-center-to-left/unscreen-009.png',
+  '/memoji-center-to-left/unscreen-010.png',
+  '/memoji-center-to-left/unscreen-011.png',
+  '/memoji-center-to-left/unscreen-012.png',
+  '/memoji-center-to-left/unscreen-013.png',
+  '/memoji-center-to-left/unscreen-014.png',
+  '/memoji-center-to-left/unscreen-015.png',
+  '/memoji-center-to-left/unscreen-016.png',
+  '/memoji-center-to-left/unscreen-017.png',
+  '/memoji-center-to-left/unscreen-018.png',
+  '/memoji-center-to-left/unscreen-019.png'
+];
+
+const centerFrames = [centerToRightFrames[0]];
+
+
 
 export const Hero = () => {
+
+  
   return (
-    <section className="relative min-h-screen overflow-hidden -mt-16">
+    <section className="relative flex flex-col justify-center min-h-screen overflow-hidden -mt-16">
       {/* Background Layer */}
       <div className="absolute inset-0 bg-black z-0" />
 
@@ -27,16 +86,23 @@ export const Hero = () => {
       </div>
 
       {/* Content Layer */}
-      <div className="relative z-20 pt-56 pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 ">
+           <MemojiInteractive
+      centerToRightFrames={centerToRightFrames}
+              centerToLeftFrames={centerToLeftFrames}
+              centerFrames={centerFrames}
+    />
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
-              <span className="block opacity-90">Bienvenue sur mon</span>
-              <span className="block text-primary-400">Portfolio</span>
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Développeur Web Full Stack passionné par la création d'applications web modernes et performantes.
+                        <p className="mb-3 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              Développeur Web Front-End 
             </p>
+            <h1 className="text-4xl tracking-tight font-semibold text-white sm:text-5xl md:text-6xl">
+              <span className="block opacity-90">Bienvenue sur mon Portfolio</span>
+            </h1>
+
+                  
+
             <div className="mt-5 max-w-md gap-6 mx-auto sm:flex sm:justify-center md:mt-8">
               <Button size="lg">
                 Voir mes projets
@@ -45,6 +111,9 @@ export const Hero = () => {
                 Me contacter
               </Button>
             </div>
+          </div>
+          <div className='text-center flex justify-center items-center'>
+          
           </div>
         </div>
       </div>

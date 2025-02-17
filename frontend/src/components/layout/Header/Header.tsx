@@ -64,7 +64,7 @@ const DropdownMenu = ({ title, links, isScrolled }: { title: string, links: { la
         className={`fixed left-0 right-0 invisible opacity-0 transform 
         -translate-y-2 group-hover:translate-y-0 group-hover:visible 
         group-hover:opacity-100 transition-[transform,opacity,visibility] 
-        duration-200 ease-out top-0 pt-14 z-30
+        duration-200 ease-out top-20 pt-0 z-50
         ${isScrolled ? 'bg-white/95' : 'bg-black/95'}`}
       >
         <div className="shadow-lg">

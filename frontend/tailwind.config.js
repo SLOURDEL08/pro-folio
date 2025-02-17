@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+         fontFamily: {
+        'qlickers': ['TheQlickers', 'sans-serif'],
+      },
          animation: {
         blob: "blob 7s infinite",
         'color-1': "color1 10s infinite",

@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Button } from '../ui/Button';
 
 interface ProjectCardProps {
   title: string;
-  description: string;
+  tag: string;
+  details: string[];
   image: string;
   buttonText: string;
   buttonLink: string;
@@ -11,13 +11,13 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
   title, 
-  description, 
+  tag,
+  details,
   image, 
-  buttonText, 
-  buttonLink 
+
 }) => {
   return (
-    <div className="w-[800px] h-[600px] relative flex-shrink-0 rounded-3xl bg-white/10 overflow-hidden shadow-lg">
+    <div className="w-[1000px] h-[600px] relative flex-shrink-0 rounded-3xl bg-white/10 overflow-hidden shadow-lg">
       {/* Image de fond */}
       <div className="absolute inset-0">
         <img
@@ -31,15 +31,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Carte de contenu */}
       <div className="absolute bottom-0 left-0 right-0 p-8">
-        <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 text-white">
-          <h3 className="text-2xl font-bold mb-3">{title}</h3>
-          <p className="text-white/80 mb-6 line-clamp-3">{description}</p>
-          <Button 
-            onClick={() => window.open(buttonLink, '_blank')}
-            className="bg-white text-black hover:bg-white/90 transition-colors"
-          >
-            {buttonText}
-          </Button>
+        <div className="bg-white flex rounded-2xl p-10 text-black">
+          <div className='w-3/5 space-y-4'>
+            <button className='rounded-full bg-blue-300/30 text-blue-500 px-4 py-1'>
+              {tag}
+            </button>
+            <h3 className="text-4xl font-bold mb-3">{title}</h3>
+          </div>
+          <div className='w-2/5 pl-6'>
+            <ul className="space-y-2">
+              {details.map((detail, index) => (
+                <li key={index} className="text-gray-500 font-light text-base flex items-start">
+                  <span className="mr-2 mt-1 text-xs text-gray-500">•</span>
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -77,10 +85,10 @@ export const BestProjectCarousel: React.FC<BestProjectCarouselProps> = ({ projec
   return (
     <div className='py-20'>
       {/* Section d'en-tête avec le contenu et les boutons de navigation */}
-      <div className='flex items-end gap-14  text-white px-20'>
+      <div className='flex items-end gap-14 text-white px-20'>
         <div className='space-y-8 w-auto'>
           <h3 className='text-5xl font-bold leading-tight'>
-            Simplify and automate website management.
+            Les projets réalisés durant mon apprentissage
           </h3>
           <p className='text-xl opacity-60 leading-10 font-light'>
             Easily manage website and technology updates, customization, and performance—all from a single, powerful dashboard.

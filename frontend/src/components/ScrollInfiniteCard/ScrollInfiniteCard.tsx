@@ -1,58 +1,97 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 
-interface Card {
-  id: number;
+// Interfaces pour typer les données
+interface Project {
+  _id: string;
   title: string;
   description: string;
-  image?: string;
+  tags: string[];
+  media: {
+    type: 'image' | 'video';
+    url: string;
+    alt?: string;
+    order?: number;
+  }[];
 }
 
 interface ScrollInfiniteCardProps {
-  cards: Card[];
+  tag: string;
   speed?: number;
 }
 
-const Card: React.FC<Card> = ({ title, image }) => {
+const Card: React.FC<{ project: Project }> = ({ project }) => {
+  // Récupère la première image du projet
+  const mainImage = project.media.find(m => m.type === 'image')?.url;
+
   return (
-    <div className="w-[300px] h-[400px] bg-white rounded-xl shadow-lg flex-shrink-0 overflow-hidden">
-      {image && (
-        <div className="h-1/2 w-full overflow-hidden">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
+    <div className="w-[500px] h-[400px] bg-white rounded-3xl shadow-xl border flex-shrink-0 overflow-hidden">
+      {mainImage && (
+        <div className="h-full w-full overflow-hidden">
+          <img 
+            src={mainImage} 
+            alt={project.title} 
+            className="w-full h-full object-cover" 
+          />
         </div>
       )}
-
     </div>
   );
 };
 
-export const ScrollInfiniteCard: React.FC<ScrollInfiniteCardProps> = ({ 
-  cards,
+export const ScrollInfiniteCard: React.FC<ScrollInfiniteCardProps> = ({
+  tag,
   speed = 50
 }) => {
-  const CLONE_COUNT = 10; // Nombre de fois que nous clonons l'ensemble des cartes
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const CLONE_COUNT = 10;
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
   const lastTimeRef = useRef<number>(0);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Création d'un grand nombre de cartes clonées
-  const clonedCards = Array(CLONE_COUNT).fill(cards).flat();
+  // Récupération des projets depuis l'API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`http://localhost:5001/api/projects?tags=${tag}`);
+        setProjects(response.data.data);
+        setError(null);
+      } catch (err) {
+        setError('Erreur lors de la récupération des projets');
+        console.error('Erreur:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, [tag]);
+
+  // Création des cartes clonées une fois les projets chargés
+  const clonedProjects = projects.length > 0 
+    ? Array(CLONE_COUNT).fill(projects).flat() 
+    : [];
 
   useEffect(() => {
-    const cardWidth = 300; // Largeur d'une carte
-    const gap = 16; // Espace entre les cartes
-    const singleSetWidth = cards.length * (cardWidth + gap);
+    if (projects.length === 0) return;
+
+    const cardWidth = 300;
+    const gap = 16;
+    const singleSetWidth = projects.length * (cardWidth + gap);
 
     const animate = (timestamp: number) => {
       if (!lastTimeRef.current) lastTimeRef.current = timestamp;
       const deltaTime = timestamp - lastTimeRef.current;
       lastTimeRef.current = timestamp;
 
-      // Calcul du déplacement
       const movement = (speed * deltaTime) / 1000;
       let newPosition = scrollPosition + movement;
 
-      // Réinitialisation en douceur
       if (newPosition >= singleSetWidth) {
         newPosition = 0;
         setScrollPosition(0);
@@ -70,35 +109,27 @@ export const ScrollInfiniteCard: React.FC<ScrollInfiniteCardProps> = ({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [scrollPosition, cards.length, speed]);
+  }, [scrollPosition, projects.length, speed]);
 
-  useEffect(() => {
-    const cardWidth = 300; // Largeur d'une carte
-    const gap = 16; // Espace entre les cartes
-    const singleSetWidth = cards.length * (cardWidth + gap);
-
-    // Réinitialiser la position si on atteint la fin
-    if (scrollPosition >= singleSetWidth) {
-      setScrollPosition(0);
-    }
-  }, [scrollPosition, cards.length]);
+  if (loading) return <div>Chargement...</div>;
+  if (error) return <div>{error}</div>;
+  if (projects.length === 0) return <div>Aucun projet trouvé avec le tag {tag}</div>;
 
   return (
     <div className="relative w-full overflow-hidden">
       <div className="flex gap-4 py-8">
-        <div 
+        <div
           ref={containerRef}
-          className="flex gap-4 transition-transform duration-100"
+          className="flex gap-8 transition-transform duration-100"
           style={{
             transform: `translateX(-${scrollPosition}px)`,
             willChange: 'transform',
           }}
         >
-          {/* Premier groupe de cartes visibles */}
-          {clonedCards.map((card, index) => (
-            <Card 
-              key={`${card.id}-${index}`} 
-              {...card} 
+          {clonedProjects.map((project, index) => (
+            <Card
+              key={`${project._id}-${index}`}
+              project={project}
             />
           ))}
         </div>
